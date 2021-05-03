@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<head>
+    <title>Animasi Sederhana</title>
+    <meta charset="utf-8" />
+</head>
+
+
+<script id="vs-src" type="x-shader/x-vertex">
+    attribute vec3 aVertexPosition;
+    attribute vec4 aVertexColor;
+    uniform mat4 uMVMatrix;
+    
+    varying vec4 vColor;
+    
+    void main(void) {
+        gl_Position = uMVMatrix * vec4(aVertexPosition, 1.0);
+        vColor = aVertexColor;
+    }
+</script>
+
+<script id="fs-src" type="x-shader/x-fragment">
+    precision mediump float;
+    
+    varying vec4 vColor;
+    
+    void main(void) {
+        gl_FragColor = vColor;
+    }
+</script>
+
+<script src="gl-matrix-min.js"></script>
+<script type="text/javascript" src="webgl-utils.js"></script>
+<script src="lab1.js"></script>
+
+<body onload="startup();">
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+</body>
